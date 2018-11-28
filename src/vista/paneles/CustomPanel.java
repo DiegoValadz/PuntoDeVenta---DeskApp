@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.paneles;
 
 import java.awt.Graphics;
 import java.awt.Image;

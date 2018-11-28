@@ -5,6 +5,8 @@
  */
 package vista;
 
+import vista.buttons.CustomButton;
+import vista.paneles.CustomPanel;
 import controlador.LoginListener;
 import java.awt.Color;
 import java.awt.Font;

@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
-import vista.VistaPrincipal;
-import vista.Login;
+package service;
 
 /**
  *
  * @author diego
  */
-public class MainApplication {
-    
+public class ApplicationEndPoint {
+    private static String USUARIOS = "";
  
+    public static String getUser(int desde) {
+        return USUARIOS.concat(String.format("/?desde=", desde));
+    }
 }

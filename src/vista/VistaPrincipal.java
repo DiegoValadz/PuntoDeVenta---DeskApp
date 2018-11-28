@@ -1,13 +1,16 @@
 package vista;
 
+import vista.buttons.CustomButton;
+import vista.paneles.CustomPanel;
 import controlador.CloseListener;
-import controlador.ButtonsListener;
+import controlador.ButtonsNavListener;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import utilities.MyLists;
 
 /**
  *
@@ -23,25 +26,26 @@ public class VistaPrincipal {
     private Icon imgVentasX, imgProductosX, imgEmpleadosX, imgAjustesX;
     private Icon mini, exit;
     public JLabel banner, lpFondo, imgMini, imgExit;
-    private ButtonsListener leftListener;
+    private ButtonsNavListener leftListener;
     private CloseListener closeListener;
     private String URL;
 
     public VistaPrincipal(String nombre) {
+        MyLists m = new MyLists();
+        m.start();
         //Login 
-        Login login = new Login(this);        
+        Login login = new Login(this);
         //Frame
         ventana = new JFrame("Aplicación Ingeniería de Software");
         ventana.getContentPane().setLayout(null);
         //Paneles
-        leftPanel = new CustomPanel(0, 0, 300, 900, null);
-        centerPanel = new CustomPanel(0, 0, 1300, 900, null);
+        leftPanel = new CustomPanel(0, 0, 300, 1200, null);
+        centerPanel = new CustomPanel(0, 0, 1500, 1200, null);
         titleBar = new CustomTitleBar();
-        URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\fondolp.jpg";
-        centerPanel.setImageBackground(URL);
+
         //Imagenes estaticas 
         URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\banner.jpg";
-        imgBanner = new ImageIcon(URL);
+        //  imgBanner = new ImageIcon(URL);
         URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\prod_img.png";
         imgProductos = new ImageIcon(URL);
         URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\ventas_img.png";
@@ -69,26 +73,28 @@ public class VistaPrincipal {
         imgExit = new JLabel(exit);
 
         //Botones
-        btn1 = new CustomButton(" Productos", imgProductos,imgProductosX);
-        btn2 = new CustomButton("   Ventas   ", imgVentas,imgVentasX);
-        btn3 = new CustomButton("Empleados", imgEmpleados,imgEmpleadosX);
-        btn4 = new CustomButton("   Ajustes    ", imgAjustes,imgAjustesX);
-        
+        btn1 = new CustomButton(" Productos", imgProductos, imgProductosX);
+        btn2 = new CustomButton("   Ventas   ", imgVentas, imgVentasX);
+        btn3 = new CustomButton("  Usuarios ", imgEmpleados, imgEmpleadosX);
+        btn4 = new CustomButton("   Ajustes    ", imgAjustes, imgAjustesX);
+
         //Listener
-        leftListener = new ButtonsListener(this);
+        leftListener = new ButtonsNavListener(this);
         closeListener = new CloseListener(this);
 
         addComponents();
         launchFrame();
     }
 
-    public void addComponents() {      
+    public void addComponents() {
         //Panel Izquierda
-        URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\lpfondo2.png";
+        URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\drawer3.png";
         leftPanel.setImageBackground(URL);
-        leftPanel.setBounds(0, 0, 300, 900);
+        leftPanel.setBounds(0, 0, 300, 1200);
         //Panel centro
-        centerPanel.setBounds(300, 0, 1000, 900);
+        URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\center_fondo2.jpg";
+        centerPanel.setImageBackground(URL);
+        centerPanel.setBounds(300, 0, 1500, 1200);
         //centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
         //Banner
         leftPanel.add(banner);
@@ -104,10 +110,10 @@ public class VistaPrincipal {
         leftPanel.add(btn4);
         btn4.setBounds(0, 540, 300, 100);
         //Imagenes de Menu
-        imgMini.setBounds(1230, 0, 25,25);    
+        imgMini.setBounds(1230, 0, 25, 25);
         imgExit.addMouseListener(closeListener);
-             
-        imgExit.setBounds(1260, 0, 25,25);
+
+        imgExit.setBounds(1260, 0, 25, 25);
         //ventana.add(imgMini);
         //ventana.add(imgExit);
         //ventana.add(titleBar);
@@ -122,15 +128,14 @@ public class VistaPrincipal {
         Image retValue = Toolkit.getDefaultToolkit().createImage(URL);
         ventana.setIconImage(retValue);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(1300, 900);
+        ventana.setSize(1400, 1000);
         ventana.setResizable(false);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(false);
     }
-    
+
     public static void main(String[] args) {
         new VistaPrincipal("App");
     }
 
-  
 }
