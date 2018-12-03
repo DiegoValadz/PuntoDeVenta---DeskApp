@@ -14,7 +14,7 @@ import modelo.DataProductos;
 import modelo.Producto;
 import org.codehaus.jettison.json.JSONException;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
-import utilities.MyLists;
+import utilities.Utilities;
 
 /**
  *
@@ -93,7 +93,7 @@ public class ProductosCliente extends AbstractClient {
         log.info("Status " + response.getStatus());
         Integer status = response.getStatus();
         if (Response.Status.OK.getStatusCode() == status) {
-            System.out.println("Si se pudo");
+            System.out.println("Si se pudo eliminar");
             //  JSONArray jsonArray = new JSONArray(aux.jsonArray);
         } else {
             throw new ServiceException(response.readEntity(String.class), status);

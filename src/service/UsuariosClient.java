@@ -7,7 +7,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
-import com.google.gson.Gson;
+import javax.ws.rs.client.Entity;
 
 import modelo.DataUsuarios;
 import javax.ws.rs.core.MediaType;
@@ -32,13 +32,15 @@ public class UsuariosClient extends AbstractClient {
 
     public ArrayList<Usuario> getUsuarios() throws ServiceException, JSONException {
         DataUsuarios aux;
-        log.info("Obteniendo usuarios");
         ResteasyWebTarget client = createClient("");
         Response response = client.request(MediaType.APPLICATION_JSON).get();
         log.info("Status " + response.getStatus());
         Integer status = response.getStatus();
         if (Status.OK.getStatusCode() == status) {
             aux = response.readEntity(DataUsuarios.class);
+            for (int i = 0; i < aux.usuarios.size(); i++) {
+                System.out.println("Id "+(i+1)+":"+aux.usuarios.get(i)._id);
+            }
             //  JSONArray jsonArray = new JSONArray(aux.jsonArray);
         } else {
             throw new ServiceException(response.readEntity(String.class), status);
@@ -47,17 +49,80 @@ public class UsuariosClient extends AbstractClient {
         return aux.usuarios;
     }
 
-    public static void main(String[] args) throws ServiceException, JSONException {
-        UsuariosClient client = new UsuariosClient("usuarios");
-        ArrayList<Usuario> usuarios = client.getUsuarios();
-        for (int i = 0; i < usuarios.size(); i++) {
-            System.out.println(usuarios.get(i).getNombre());
-            System.out.println(usuarios.get(i).getId());
-            System.out.println(usuarios.get(i).getTipo());
-            System.out.println(usuarios.get(i).getContraseña());
-            System.out.println(usuarios.get(i).getUsuario());
+    public void postUsuarios(Usuario u) throws ServiceException, JSONException {
 
+        ResteasyWebTarget client = createClient("");
+        Response response = client.request(MediaType.APPLICATION_JSON).post(Entity.json(u));
+
+        log.info("Status " + response.getStatus());
+        Integer status = response.getStatus();
+        if (Response.Status.OK.getStatusCode() == status) {
+            System.out.println("Si se pudo");
+            //  JSONArray jsonArray = new JSONArray(aux.jsonArray);
+        } else {
+            throw new ServiceException(response.readEntity(String.class), status);
         }
+        response.close();
 
     }
+
+    public void putProductos(Usuario u, String id) throws ServiceException, JSONException {
+
+        log.info("Actualizando Usuario");
+        ResteasyWebTarget client = createClient("/" + id);
+        Response response = client.request(MediaType.APPLICATION_JSON).put(Entity.json(u));
+
+        log.info("Status " + response.getStatus());
+        Integer status = response.getStatus();
+        if (Response.Status.OK.getStatusCode() == status) {
+            System.out.println("Si se pudo");
+            //  JSONArray jsonArray = new JSONArray(aux.jsonArray);
+        } else {
+            throw new ServiceException(response.readEntity(String.class), status);
+        }
+        response.close();
+
+    }
+
+    public void deleteProductos(String id) throws ServiceException, JSONException {
+
+        log.info("Eliminando Usuario");
+        ResteasyWebTarget client = createClient("/" + id);
+        Response response = client.request(MediaType.APPLICATION_JSON).delete();
+
+        log.info("Status " + response.getStatus());
+        Integer status = response.getStatus();
+        if (Response.Status.OK.getStatusCode() == status) {
+            System.out.println("Si se pudo eliminar");
+            //  JSONArray jsonArray = new JSONArray(aux.jsonArray);
+        } else {
+            throw new ServiceException(response.readEntity(String.class), status);
+        }
+        response.close();
+
+    }
+/*
+    public static void main(String[] args) throws ServiceException, JSONException {
+        UsuariosClient c = new UsuariosClient("usuarios");
+        ArrayList<Usuario> u = c.getUsuarios();
+
+        for (int i = 0; i < u.size(); i++) {
+            System.out.println(u.get(i).getNombre());
+            System.out.println(u.get(i).getContraseña());
+
+            System.out.println(u.get(i).getID_USER());
+
+            System.out.println(u.get(i).getTipo());
+
+            System.out.println(u.get(i).getTelefono());
+
+            System.out.println(u.get(i).getCp());
+
+        }
+      Usuario u2 = new Usuario();
+      u2.setID_USER(u.get(0).getID_USER());
+            u2.setNombre("Juan Lopez");
+            c.putProductos(u2, u2.getID_USER());
+
+    }*/
 }

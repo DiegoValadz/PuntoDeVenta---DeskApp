@@ -10,7 +10,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import utilities.MyLists;
+import javax.swing.JTabbedPane;
+import utilities.Utilities;
 
 /**
  *
@@ -21,6 +22,7 @@ public class VistaPrincipal {
     public JFrame ventana;
     private CustomTitleBar titleBar;
     public CustomPanel leftPanel, centerPanel;
+    public JTabbedPane tp;
     public CustomButton btn1, btn2, btn3, btn4, btn5;
     private Icon imgBanner, imgVentas, imgProductos, imgEmpleados, imgAjustes;
     private Icon imgVentasX, imgProductosX, imgEmpleadosX, imgAjustesX;
@@ -29,18 +31,22 @@ public class VistaPrincipal {
     private ButtonsNavListener leftListener;
     private CloseListener closeListener;
     private String URL;
+    
 
     public VistaPrincipal(String nombre) {
-        MyLists m = new MyLists();
+        Utilities m = new Utilities();
         m.start();
         //Login 
         Login login = new Login(this);
         //Frame
         ventana = new JFrame("Aplicación Ingeniería de Software");
         ventana.getContentPane().setLayout(null);
+        Utilities.frameGlobal = ventana;
+        
         //Paneles
         leftPanel = new CustomPanel(0, 0, 300, 1200, null);
         centerPanel = new CustomPanel(0, 0, 1500, 1200, null);
+        tp = new JTabbedPane();
         titleBar = new CustomTitleBar();
 
         //Imagenes estaticas 
@@ -105,10 +111,13 @@ public class VistaPrincipal {
         btn1.setBounds(0, 210, 300, 100);
         leftPanel.add(btn2);
         btn2.setBounds(0, 320, 300, 100);
+        btn2.addActionListener(leftListener);
         leftPanel.add(btn3);
         btn3.setBounds(0, 430, 300, 100);
+        btn3.addActionListener(leftListener);
         leftPanel.add(btn4);
         btn4.setBounds(0, 540, 300, 100);
+        btn4.addActionListener(leftListener);
         //Imagenes de Menu
         imgMini.setBounds(1230, 0, 25, 25);
         imgExit.addMouseListener(closeListener);

@@ -7,15 +7,15 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-import org.codehaus.jettison.json.JSONException;
-import service.ProductosCliente;
-import service.ServiceException;
-import utilities.MyLists;
+import javax.swing.JTabbedPane;
+import org.jgroups.protocols.CENTRAL_LOCK;
+import vista.paneles.CustomTabbedPanel;
+import utilities.Utilities;
 import vista.paneles.ProductosPanel;
 import vista.VistaPrincipal;
+import vista.paneles.DiarioDeVentasPanel;
+import vista.paneles.GenerarVentasPanel;
+import vista.paneles.UsuariosPanel;
 
 /**
  *
@@ -33,24 +33,44 @@ public class ButtonsNavListener implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == vp.btn1) {
             ProductosPanel pp = new ProductosPanel(0, 0, 1300, 1200, null);
-            pp.tabla.setModel(MyLists.setUpTableData(pp));
+            pp.tabla.setModel(Utilities.setUpTableData(pp));
             pp.tabla.repaint();
-            /**
-             * additional code.
-    *
-             */
-          //  tableModel.fireTableDataChanged();
-           
+
             vp.ventana.remove(vp.centerPanel);
+            vp.ventana.remove(vp.tp);
+            vp.ventana.repaint();
+
             vp.centerPanel = pp;
+            vp.ventana.add(vp.centerPanel);
+            vp.ventana.repaint();
+
+        } else if (ae.getSource() == vp.btn2) {
+
+            CustomTabbedPanel jtp = new CustomTabbedPanel(JTabbedPane.TOP, JTabbedPane.WRAP_TAB_LAYOUT);
+
+            vp.ventana.remove(vp.centerPanel);
+            vp.ventana.remove(vp.tp);
+            vp.ventana.repaint();
+
+            vp.tp = jtp;
+            vp.ventana.add(vp.tp);
+            vp.ventana.repaint();
+
+        } else if (ae.getSource() == vp.btn3) {
+
+            UsuariosPanel up = new UsuariosPanel(0, 0, 1300, 1200, null);
+
+            vp.ventana.remove(vp.centerPanel);
+            vp.ventana.remove(vp.tp);
+
+            vp.ventana.repaint();
+
+            vp.centerPanel = up;
             vp.ventana.add(vp.centerPanel);
             vp.ventana.repaint();
 
         }
 
     }
-
-    
-
 
 }

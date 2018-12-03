@@ -13,9 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import vista.buttons.CustomButton;
 import vista.VistaPrincipal;
-import controlador.ButtonWinListener;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import controlador.ButtonWinProdListener;
 
 /**
  *
@@ -27,13 +25,13 @@ public class ModifiProdPanel extends JPanel {
     public JTextField nombretxt, idtxt, pventatxt, pcompratxt, existxt;
     public JTextArea desctxt;
     public CustomButton prodbtn, cancel, prodbtn2;
-    private ButtonWinListener bwl;
+    private ButtonWinProdListener bwl;
     public static final int ADD = 0;
     public static final int UPDATE = 1;
     public static int s;
     private String URL;
 
-    public ModifiProdPanel(String msg) {
+    public ModifiProdPanel(String msg){
         setLayout(null);
         setBackground(new Color(224, 224, 224));
 
@@ -45,13 +43,13 @@ public class ModifiProdPanel extends JPanel {
         headlb.setForeground(Color.black);
         headlb.setBounds(20, 5, 400, 30);
 
-        nombrelb = new JLabel("Nombre");
-        nombrelb.setFont(font);
-        nombrelb.setBounds(20, 35, 400, 30);
-
         idlb = new JLabel("ID");
         idlb.setFont(font);
-        idlb.setBounds(20, 90, 400, 30);
+        idlb.setBounds(20, 35, 400, 30);
+        
+        nombrelb = new JLabel("Nombre");
+        nombrelb.setFont(font);
+        nombrelb.setBounds(20, 90, 400, 30);        
 
         pcompralb = new JLabel("Precio Compra");
         pcompralb.setFont(font);
@@ -71,10 +69,10 @@ public class ModifiProdPanel extends JPanel {
 
         //TextFields
         nombretxt = new JTextField(100);
-        nombretxt.setBounds(20, 60, 400, 30);
+        nombretxt.setBounds(20, 120, 400, 30);
 
         idtxt = new JTextField(100);
-        idtxt.setBounds(20, 120, 200, 30);
+        idtxt.setBounds(20, 60, 200, 30);
 
         pcompratxt = new JTextField(100);
         pcompratxt.setBounds(20, 180, 200, 30);
@@ -89,7 +87,7 @@ public class ModifiProdPanel extends JPanel {
         desctxt.setBounds(20, 300, 500, 120);
 
         //Listeners
-        bwl = new ButtonWinListener(this, s);
+        bwl = new ButtonWinProdListener(this, s);
         //Buttons
         prodbtn = new CustomButton("Agregar");
         prodbtn.setBounds(20, 440, 120, 30);
@@ -132,8 +130,6 @@ public class ModifiProdPanel extends JPanel {
 
     }
 
-    public static void main(String[] args) {
-        new VistaPrincipal("");
-    }
+  
 
 }

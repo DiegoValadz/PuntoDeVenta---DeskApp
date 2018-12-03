@@ -1,7 +1,7 @@
 package modelo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 //import org.jongo.marshall.jackson.id.Id;
-import org.codehaus.jackson.annotate.JsonSetter;
+
  
 /**
  *
@@ -9,7 +9,11 @@ import org.codehaus.jackson.annotate.JsonSetter;
  */
 
 public class Usuario{
-    private String ID;    
+    @JsonProperty("_id")
+    public String _id;
+    
+    @JsonProperty("ID_USER")
+    private String ID_USER;    
     
     @JsonProperty("tipo")
     private String tipo;
@@ -28,29 +32,88 @@ public class Usuario{
  
     @JsonProperty("contraseña")
     private String contraseña;
-
+    
+    @JsonProperty("direccion")
+    private String direccion;
+ 
+    @JsonProperty("email")
+    private String email;
+ 
+    @JsonProperty("ciudad")
+    private String ciudad;
+    
+    @JsonProperty("estado")
+    private String estado;
+ 
+    @JsonProperty("cp")
+    private String cp;
+ 
+    @JsonProperty("telefono")
+    private String telefono;
+       
+ 
     public Usuario() {
+        userState=true;
+        contraseña=" ";
     }
 
-    public Usuario(String ID, String tipo, boolean userState, boolean google, String nombre, String usuario, String contraseña) {
-        this.ID = ID;
-        this.tipo = tipo;
-        this.userState = userState;
-        this.google = google;
-        this.nombre = nombre;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
+   
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+  
+    public String getID_USER() {
+        return ID_USER;
+    }
+
+    public void setID_USER(String ID_USER) {
+        this.ID_USER = ID_USER;
     }
  
-  
-
-    public String getId() {
-        return ID;
-    }
-    @JsonSetter("ID")
-    public void setId(String ID) {
-        this.ID = ID;
-    }
 
     public String getTipo() {
         return tipo;
@@ -102,8 +165,10 @@ public class Usuario{
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + ID + ", tipo=" + tipo + ", userState=" + userState + ", google=" + google + ", nombre=" + nombre + ", usuario=" + usuario + ", contraseña=" + contraseña + '}';
+        return "Usuario{" + "ID_USER=" + ID_USER + ", tipo=" + tipo + ", userState=" + userState + ", google=" + google + ", nombre=" + nombre + ", usuario=" + usuario + ", contrase\u00f1a=" + contraseña + ", direccion=" + direccion + ", email=" + email + ", ciudad=" + ciudad + ", estado=" + estado + ", cp=" + cp + ", telefono=" + telefono + '}';
     }
+
+   
  
  
 }

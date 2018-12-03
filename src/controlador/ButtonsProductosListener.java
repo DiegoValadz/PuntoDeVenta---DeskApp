@@ -9,15 +9,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import modelo.Producto;
 import org.codehaus.jettison.json.JSONException;
 import service.ProductosCliente;
 import service.ServiceException;
-import utilities.MyLists;
+import utilities.Utilities;
 import vista.paneles.ModifiProdPanel;
-import vista.ModificarProductosFrame;
+import vista.ModificarProductosDialog;
+import vista.VistaPrincipal;
 import vista.paneles.ProductosPanel;
+import utilities.Utilities;
 
 /**
  *
@@ -26,10 +29,10 @@ import vista.paneles.ProductosPanel;
 public class ButtonsProductosListener implements ActionListener {
 
     private ProductosPanel pp;
-    private ModificarProductosFrame frame;
+    private ModificarProductosDialog dialog;
     private ModifiProdPanel app;
 
-    public ButtonsProductosListener(ProductosPanel pp) {
+    public ButtonsProductosListener(ProductosPanel pp ) {
         this.pp = pp;
     }
 
@@ -38,19 +41,18 @@ public class ButtonsProductosListener implements ActionListener {
         if (ae.getSource() == pp.btnAgregar) {
             app.s = ModifiProdPanel.ADD;
             app = new ModifiProdPanel("Introduzca los datos del producto");
-            frame = new ModificarProductosFrame(app);
-
+            dialog = new ModificarProductosDialog(app);
         } else if (ae.getSource() == pp.btnActua) {
             ProductosCliente pc = new ProductosCliente("productos");
             try {
-                MyLists.productos = pc.getProductos();
+                Utilities.productos = pc.getProductos();
             } catch (ServiceException ex) {
                 Logger.getLogger(ButtonsProductosListener.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JSONException ex) {
                 Logger.getLogger(ButtonsProductosListener.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            MyLists.setUpTableData(pp);
+            Utilities.setUpTableData(pp);
 
         } else if (ae.getSource() == pp.btnEditar) {
 
@@ -59,7 +61,7 @@ public class ButtonsProductosListener implements ActionListener {
                 //Guardamos en un entero la fila seleccionada.
                 filaseleccionada = pp.tabla.getSelectedRow();
                 if (filaseleccionada == -1) {
-                    JOptionPane.showMessageDialog(pp, "No ha seleccionado ninguna fila.");
+                    JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna fila.");
                 } else {
                     app.s = ModifiProdPanel.UPDATE;
                     app = new ModifiProdPanel("Modifique los datos del producto");
@@ -71,7 +73,7 @@ public class ButtonsProductosListener implements ActionListener {
                     app.desctxt.setText(pp.tabla.getValueAt(filaseleccionada, 5).toString());
 
                     app.idtxt.setEditable(false);
-                    frame = new ModificarProductosFrame(app);
+                    dialog = new ModificarProductosDialog(app);
 
                 }
 
@@ -83,12 +85,14 @@ public class ButtonsProductosListener implements ActionListener {
             try {
                 //Guardamos en un entero la fila seleccionada.
                 filaseleccionada = pp.tabla.getSelectedRow();
+                System.out.println("Fila a eliminar : "+filaseleccionada);
                 if (filaseleccionada == -1) {
                     JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna fila.");
                 } else {
                     int s = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este registro?", "Eliminar",JOptionPane.YES_NO_OPTION);
                     if(s==JOptionPane.YES_OPTION){
                         String id= pp.tabla.getValueAt(filaseleccionada, 0).toString();
+                        System.out.println("El id es"+id);
                         ProductosCliente cliente = new ProductosCliente("productos");
                         cliente.deleteProductos(id);
                     }

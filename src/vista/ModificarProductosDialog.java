@@ -8,33 +8,41 @@ package vista;
 import controlador.ButtonsProductosListener;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import utilities.Utilities;
 import vista.paneles.ModifiProdPanel;
+import vista.paneles.ModifiUserPanel;
 
 /**
  *
  * @author diego
  */
-public class ModificarProductosFrame{
-    public JFrame ventana;
+public class ModificarProductosDialog {
+
+    public JDialog ventana;
     public ModifiProdPanel p;
     private ButtonsProductosListener bpl;
+    private ModifiUserPanel mup;
+    private VistaPrincipal vp;
 
-    public ModificarProductosFrame(ModifiProdPanel p) {   
+    public ModificarProductosDialog(ModifiUserPanel mup) {
+        this.mup = mup;
+        ventana = new JDialog(Utilities.frameGlobal, false);
+        ventana.add(mup);
+        launchDialog();
+    }
+
+    public ModificarProductosDialog(ModifiProdPanel p) {
         this.p = p;
         //Frame
-        ventana = new JFrame("Agregar nuevo producto");
+        ventana = new JDialog(Utilities.frameGlobal, false);
         ventana.add(p);
-        addComponents();
-        launchFrame();
-    }
-    
-    private void addComponents() {
-        
+
+        launchDialog();
     }
 
-    public void launchFrame() {
+    public void launchDialog() {
         ventana.setSize(700, 550);
         ventana.setResizable(false);
         ventana.setLocationRelativeTo(null);

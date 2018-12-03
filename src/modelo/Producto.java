@@ -12,23 +12,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author diego
  */
 public class Producto {
-    @JsonProperty("ID")
-    private String ID;    
+    @JsonProperty("_id")
+    public String _id;
+     
+    @JsonProperty("ID_PROD")
+    private String ID_PROD;    
     
     @JsonProperty("nombre")
     private String nombre;
      
     @JsonProperty("existencia")
-    private String existencia;
+    private double existencia;
  
     @JsonProperty("prodState")
     private boolean prodState; 
     
     @JsonProperty("precioVenta")
-    private String precioVenta;
+    private double precioVenta;
  
     @JsonProperty("precioCompra")
-    private String precioCompra;
+    private double precioCompra;
  
     @JsonProperty("descripcion")
     private String descripcion;
@@ -36,27 +39,23 @@ public class Producto {
     public Producto() {
         prodState = true;
     }
-    
-    
 
-    public String getID() {
-        return ID;
+    public String getID_PROD() {
+        return ID_PROD;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID_PROD(String ID_PROD) {
+        this.ID_PROD = ID_PROD;
     }
 
-
-   
-    public String getExistencia() {
+    public double getExistencia() {
         return existencia;
     }
 
-    public void setExistencia(String existencia) {
+    public void setExistencia(double existencia) {
         this.existencia = existencia;
     }
-
+    
     public boolean isProdState() {
         return prodState;
     }
@@ -65,21 +64,23 @@ public class Producto {
         this.prodState = prodState;
     }
 
-    public String getPrecioVenta() {
+    public double getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(String precioVenta) {
+    public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
     }
 
-    public String getPrecioCompra() {
+    public double getPrecioCompra() {
         return precioCompra;
     }
 
-    public void setPrecioCompra(String precioCompra) {
+    public void setPrecioCompra(double precioCompra) {
         this.precioCompra = precioCompra;
     }
+
+   
 
     public String getDescripcion() {
         return descripcion;

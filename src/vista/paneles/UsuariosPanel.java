@@ -6,11 +6,10 @@
 package vista.paneles;
 
 import controlador.ButtonsProductosListener;
+import controlador.ButtonsUsuariosListener;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.LayoutManager;
-import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -23,13 +22,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import utilities.Utilities;
 import vista.buttons.CustomButton;
-import vista.VistaPrincipal;
 
 /**
  *
  * @author diego
  */
-public class ProductosPanel extends CustomPanel {
+public class UsuariosPanel extends CustomPanel {
 
     private JLabel lbBuscar;
     private JTextField buscarCampo;
@@ -39,12 +37,12 @@ public class ProductosPanel extends CustomPanel {
     private JPanel headBar;
     public JTable tabla;
     public DefaultTableModel modelo;
+    private ButtonsUsuariosListener bul;
     private JScrollPane scrollPane;
     private JScrollBar scrollBar;
     private String URL;
-    private ButtonsProductosListener bpl;
 
-    public ProductosPanel(int x, int y, int widthP, int heigthP, LayoutManager lm) {
+    public UsuariosPanel(int x, int y, int widthP, int heigthP, LayoutManager lm) {
         super(x, y, widthP, heigthP, lm);
         setBounds(300, 0, 1500, 1200);
         //Icons
@@ -55,7 +53,7 @@ public class ProductosPanel extends CustomPanel {
         //Labels
         updatelb = new JLabel(updateIcon);
         updatexlb = new JLabel(updatexIcon);
-        lbBuscar = new JLabel("   Introduzca el nombre del producto que desea buscar  ");
+        lbBuscar = new JLabel("   Introduzca el usuario que desea buscar  ");
         lbBuscar.setForeground(Color.gray);
         lbBuscar.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 25));
         lbBuscar.setBounds(5, 10, 640, 30);
@@ -64,7 +62,7 @@ public class ProductosPanel extends CustomPanel {
         buscarCampo.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
         buscarCampo.setBounds(25, 40, 870, 30);
         //Listeners
-        bpl = new ButtonsProductosListener(this);
+        bul = new ButtonsUsuariosListener(this);
         //Buttons
         btnBuscar = new CustomButton("Buscar");
         btnBuscar.setFont(new Font("Tw Cen MT", Font.ITALIC, 25));
@@ -72,22 +70,22 @@ public class ProductosPanel extends CustomPanel {
         btnAgregar = new CustomButton("Agregar");
         btnAgregar.setFont(new Font("Tw Cen MT", Font.ITALIC, 25));
         btnAgregar.setBounds(925, 200, 120, 30);
-        btnAgregar.addActionListener(bpl);
+        btnAgregar.addActionListener(bul);
 
         btnEditar = new CustomButton("Editar");
         btnEditar.setFont(new Font("Tw Cen MT", Font.ITALIC, 25));
         btnEditar.setBounds(925, 250, 120, 30);
-        btnEditar.addActionListener(bpl);
+        btnEditar.addActionListener(bul);
 
         btnEliminar = new CustomButton("Eliminar");
         btnEliminar.setFont(new Font("Tw Cen MT", Font.ITALIC, 25));
         btnEliminar.setBounds(925, 300, 120, 30);
-        btnEliminar.addActionListener(bpl);
+        btnEliminar.addActionListener(bul);
 
         btnActua = new CustomButton("", updateIcon, updatexIcon);
         btnActua.setFont(new Font("Tw Cen MT", Font.ITALIC, 25));
         btnActua.setBounds(940, 820, 80, 80);
-        btnActua.addActionListener(bpl);
+        btnActua.addActionListener(bul);
 
         //Table
         tabla = new JTable();
@@ -95,16 +93,19 @@ public class ProductosPanel extends CustomPanel {
 
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Precio Compra");
-        modelo.addColumn("Precio Venta");
-        modelo.addColumn("Existencia");
-        modelo.addColumn("Descripción");
+        modelo.addColumn("Usuario");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Ciudad");
+        modelo.addColumn("Estado");
+        modelo.addColumn("CP");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("E-mail");
 
         TableColumnModel tm = tabla.getColumnModel();
-        tm.getColumn(5).setPreferredWidth(300);
+        tm.getColumn(9).setPreferredWidth(250);
         Utilities.setUpTableData(this);
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
+       tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         scrollPane = new JScrollPane(tabla, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBounds(25, 100, 870, 800);
@@ -123,4 +124,5 @@ public class ProductosPanel extends CustomPanel {
 
     }
 
+   
 }
