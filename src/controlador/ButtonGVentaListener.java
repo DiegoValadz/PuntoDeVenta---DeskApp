@@ -59,7 +59,7 @@ public class ButtonGVentaListener implements ActionListener {
 
             try {
                 gvp.venta._id = gvp.foliotxt.getText();
-                SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
                 gvp.venta.setFecha(formato.format(gvp.dateChooser.getDate()));
 
                 gvp.venta.setHora(gvp.horatxt.getText());
@@ -79,7 +79,7 @@ public class ButtonGVentaListener implements ActionListener {
                 String msg = fillVentaTicket(gvp.venta, gvp.venta.getProductosList());
                 ReciboVentaPanel rvp = new ReciboVentaPanel(msg);
                 ModificarCustomDialog customDialog = new ModificarCustomDialog(rvp);
-
+                gvp.venta = new Venta();
             } catch (ServiceException ex) {
                 Logger.getLogger(ButtonGVentaListener.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(gvp, "Debes llenar todos los campos");

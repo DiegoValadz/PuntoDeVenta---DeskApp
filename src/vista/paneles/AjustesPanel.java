@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vista.paneles;
+import controlador.ButtonAjustesListener;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.LayoutManager;
@@ -11,6 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import vista.VistaPrincipal;
 import vista.buttons.CustomButton;
 /**
  *
@@ -24,11 +26,13 @@ public class AjustesPanel extends CustomPanel{
     private Icon updateIcon, updatexIcon;
     private JLabel updatelb, updatexlb;
     private String URL;
+    private ButtonAjustesListener bal;
 
-    public AjustesPanel(int x, int y, int widthP, int heigthP, LayoutManager lm) {
+    public AjustesPanel(int x, int y, int widthP, int heigthP, LayoutManager lm,VistaPrincipal vp) {
         super(x, y, widthP, heigthP, lm);
         setBounds(300, 0, 1500, 1200);
-       
+       //Listeners
+       bal = new ButtonAjustesListener(vp);
         //Icons
         URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\update.png";
         updateIcon = new ImageIcon(URL);
@@ -124,6 +128,9 @@ public class AjustesPanel extends CustomPanel{
         btnCerrar = new CustomButton("Cerrar Sesión");
         btnCerrar.setFont(new Font("Tw Cen MT", Font.ITALIC, 25));
         btnCerrar.setBounds(300, 380, 320, 30);
+        btnCerrar.addActionListener(bal);
+        
+
 
         add(lbTipo);
         add(lbTipoRes);
@@ -156,4 +163,5 @@ public class AjustesPanel extends CustomPanel{
         
     }*/
 
+    
 }

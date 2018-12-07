@@ -16,7 +16,7 @@ public class DataVentas {
     public boolean ok;
 
     @JsonProperty("ventas")
-    public ArrayList<Venta> ventas;
+    public ArrayList<VentaDW> ventas;
 
     @JsonProperty("total_ventas")
     public int total_ventas;

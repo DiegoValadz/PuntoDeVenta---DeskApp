@@ -34,6 +34,8 @@ public class ModificarCustomDialog {
         this.mup = mup;
         ventana = new JDialog(Utilities.frameGlobal, false);
         ventana.add(mup);
+                ventana.setSize(700, 550);
+
         launchDialog();
     }
 
@@ -42,6 +44,7 @@ public class ModificarCustomDialog {
         //Frame
         ventana = new JDialog(Utilities.frameGlobal, false);
         ventana.add(p);
+        ventana.setSize(600, 550);
 
         launchDialog();
     }
@@ -50,13 +53,13 @@ public class ModificarCustomDialog {
         this.rvp = rvp;
         ventana = new JDialog(Utilities.frameGlobal, false);
         ventana.add(rvp);
+        ventana.setSize(600, 550);
 
        launchDialog();
     }
     
     
     public void launchDialog() {
-        ventana.setSize(600, 550);
         ventana.setResizable(false);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);

@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import modelo.DataUsuarios;
 import modelo.DataVentas;
 import modelo.Venta;
+import modelo.VentaDW;
 import org.codehaus.jettison.json.JSONException;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import utilities.Utilities;
@@ -29,9 +30,51 @@ public class VentasCliente extends AbstractClient {
         super(contextPath);
     }
 
-    public ArrayList<Venta> getVentas() throws ServiceException, JSONException {
+    public ArrayList<VentaDW> getVentas() throws ServiceException, JSONException {
         DataVentas aux;
         ResteasyWebTarget client = createClient("");
+        Response response = client.request(MediaType.APPLICATION_JSON).get();
+        responseGlobal = response;
+
+        log.info("Status " + response.getStatus());
+        Integer status = response.getStatus();
+        if (Response.Status.OK.getStatusCode() == status) {
+            aux = response.readEntity(DataVentas.class);
+            for (int i = 0; i < aux.ventas.size(); i++) {
+                System.out.println("Id " + (i + 1) + ":" + aux.ventas.get(i)._id);
+            }
+            //  JSONArray jsonArray = new JSONArray(aux.jsonArray);
+        } else {
+            throw new ServiceException(response.readEntity(String.class), status);
+        }
+        response.close();
+        return aux.ventas;
+    }
+    
+    public ArrayList<VentaDW> getVentasSucursal(String suc) throws ServiceException, JSONException {
+        DataVentas aux;
+        ResteasyWebTarget client = createClient(suc);
+        Response response = client.request(MediaType.APPLICATION_JSON).get();
+        responseGlobal = response;
+
+        log.info("Status " + response.getStatus());
+        Integer status = response.getStatus();
+        if (Response.Status.OK.getStatusCode() == status) {
+            aux = response.readEntity(DataVentas.class);
+            for (int i = 0; i < aux.ventas.size(); i++) {
+                System.out.println("Id " + (i + 1) + ":" + aux.ventas.get(i)._id);
+            }
+            //  JSONArray jsonArray = new JSONArray(aux.jsonArray);
+        } else {
+            throw new ServiceException(response.readEntity(String.class), status);
+        }
+        response.close();
+        return aux.ventas;
+    }
+    
+      public ArrayList<VentaDW> getVentasVendedor(String ven) throws ServiceException, JSONException {
+        DataVentas aux;
+        ResteasyWebTarget client = createClient(ven);
         Response response = client.request(MediaType.APPLICATION_JSON).get();
         responseGlobal = response;
 

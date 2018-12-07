@@ -73,8 +73,7 @@ public class ButtonsNavListener implements ActionListener {
         }
          else if (ae.getSource() == vp.btn4) {
 
-            AjustesPanel ap = new AjustesPanel(0, 0, 1300, 1200, null);
-
+            AjustesPanel ap = new AjustesPanel(0, 0, 1300, 1200, null,vp);
             vp.ventana.remove(vp.centerPanel);
             vp.ventana.remove(vp.tp);
 
