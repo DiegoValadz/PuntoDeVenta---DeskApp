@@ -17,7 +17,7 @@ import service.ProductosCliente;
 import service.ServiceException;
 import utilities.Utilities;
 import vista.paneles.ModifiProdPanel;
-import vista.ModificarProductosDialog;
+import vista.ModificarCustomDialog;
 import vista.VistaPrincipal;
 import vista.paneles.ProductosPanel;
 import utilities.Utilities;
@@ -29,7 +29,7 @@ import utilities.Utilities;
 public class ButtonsProductosListener implements ActionListener {
 
     private ProductosPanel pp;
-    private ModificarProductosDialog dialog;
+    private ModificarCustomDialog dialog;
     private ModifiProdPanel app;
 
     public ButtonsProductosListener(ProductosPanel pp ) {
@@ -41,7 +41,7 @@ public class ButtonsProductosListener implements ActionListener {
         if (ae.getSource() == pp.btnAgregar) {
             app.s = ModifiProdPanel.ADD;
             app = new ModifiProdPanel("Introduzca los datos del producto");
-            dialog = new ModificarProductosDialog(app);
+            dialog = new ModificarCustomDialog(app);
         } else if (ae.getSource() == pp.btnActua) {
             ProductosCliente pc = new ProductosCliente("productos");
             try {
@@ -73,7 +73,7 @@ public class ButtonsProductosListener implements ActionListener {
                     app.desctxt.setText(pp.tabla.getValueAt(filaseleccionada, 5).toString());
 
                     app.idtxt.setEditable(false);
-                    dialog = new ModificarProductosDialog(app);
+                    dialog = new ModificarCustomDialog(app);
 
                 }
 

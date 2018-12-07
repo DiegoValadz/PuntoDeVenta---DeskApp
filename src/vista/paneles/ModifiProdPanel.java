@@ -14,6 +14,11 @@ import javax.swing.JTextField;
 import vista.buttons.CustomButton;
 import vista.VistaPrincipal;
 import controlador.ButtonWinProdListener;
+import java.awt.Dimension;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -21,20 +26,24 @@ import controlador.ButtonWinProdListener;
  */
 public class ModifiProdPanel extends JPanel {
 
+   
+
     private JLabel headlb, nombrelb, idlb, pventalb, pcompralb, exislb, desclb;
+    private JLabel imglbtxt,img;
     public JTextField nombretxt, idtxt, pventatxt, pcompratxt, existxt;
     public JTextArea desctxt;
-    public CustomButton prodbtn, cancel, prodbtn2;
+    public CustomButton prodbtn, cancel, prodbtn2,imgbtn;
     private ButtonWinProdListener bwl;
     public static final int ADD = 0;
     public static final int UPDATE = 1;
     public static int s;
-    private String URL;
-
+    public static String URL;
+    public Icon imgIcon;
+    
     public ModifiProdPanel(String msg){
         setLayout(null);
         setBackground(new Color(224, 224, 224));
-
+        
         //Labels
         Font font = new Font("Yu Gothic UI Semibold", Font.BOLD, 15);
 
@@ -66,7 +75,15 @@ public class ModifiProdPanel extends JPanel {
         desclb = new JLabel("Descripción");
         desclb.setFont(font);
         desclb.setBounds(20, 270, 250, 30);
-
+        
+        imglbtxt = new JLabel("Imagen");
+        imglbtxt.setFont(font);
+        imglbtxt.setBounds(300, 35, 400, 30);
+        
+        img = new JLabel();
+        img.setBounds(400, 35, 100, 100);
+        
+           
         //TextFields
         nombretxt = new JTextField(100);
         nombretxt.setBounds(20, 120, 400, 30);
@@ -96,6 +113,11 @@ public class ModifiProdPanel extends JPanel {
         prodbtn2 = new CustomButton("Actualizar");
         prodbtn2.setBounds(20, 440, 120, 30);
         prodbtn2.addActionListener(bwl);
+        
+        imgbtn = new CustomButton("...");
+        imgbtn.setBounds(310, 65, 30, 20);
+        imgbtn.addActionListener(bwl);
+
 
         if (s == ADD) {
             prodbtn2.setVisible(false);
@@ -127,9 +149,26 @@ public class ModifiProdPanel extends JPanel {
         add(prodbtn);
         add(cancel);
         add(prodbtn2);
+        add(imglbtxt);
+        add(imgbtn);
+        add(img);
 
     }
+    
+    public static void main(String[] args) {
+        JFrame f = new JFrame();
+        f.add(new ModifiProdPanel(""));
+        f.setVisible(true);
+        f.setSize(600, 900);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
-  
+   public void setImageSelected() {
+         imgIcon = new ImageIcon(URL);
+         img.setIcon(imgIcon);
+         img.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+         img.setBounds(370, 35, 80, 80);
+         repaint();
+    }
 
 }

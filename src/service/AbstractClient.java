@@ -14,9 +14,11 @@ import java.util.logging.Logger;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MultivaluedMap;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
+import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
  
 /**
  * @author raidentrance
@@ -24,7 +26,7 @@ import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
  */
 public class AbstractClient {
     protected final String url = "http://localhost:3000/";
-    //protected final String url = "https://puntoventa74.herokuapp.com/";
+   // protected final String url = "https://puntoventa74.herokuapp.com/";
     protected String contextPath;
  
     private static final Logger log = Logger.getLogger(AbstractClient.class.getName());
@@ -42,6 +44,20 @@ public class AbstractClient {
              
     }
     
+    protected ResteasyWebTarget createClient(String path,String user,String pass) {
+        String assembledPath = assembleEndpoint(path,user,pass);
+        ResteasyClient client = new ResteasyClientBuilder().build();
+        ResteasyWebTarget target = client.target(assembledPath).queryParam("usuario", user);//.queryParam("contrasena", pass);
+        System.out.println(target.getUri());
+        return target;
+        
+             
+    }
+    private String assembleEndpoint(String path, String user, String pass) {
+        String endpoint = url.concat(contextPath)/*.concat(path+"?usuario="+user+"&contrasena="+pass)*/;
+        log.info(String.format("Calling endpoint %s", endpoint));
+        return endpoint;
+    }
 
         
                 

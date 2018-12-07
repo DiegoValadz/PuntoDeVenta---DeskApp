@@ -13,6 +13,7 @@ import vista.paneles.CustomTabbedPanel;
 import utilities.Utilities;
 import vista.paneles.ProductosPanel;
 import vista.VistaPrincipal;
+import vista.paneles.AjustesPanel;
 import vista.paneles.DiarioDeVentasPanel;
 import vista.paneles.GenerarVentasPanel;
 import vista.paneles.UsuariosPanel;
@@ -66,6 +67,20 @@ public class ButtonsNavListener implements ActionListener {
             vp.ventana.repaint();
 
             vp.centerPanel = up;
+            vp.ventana.add(vp.centerPanel);
+            vp.ventana.repaint();
+
+        }
+         else if (ae.getSource() == vp.btn4) {
+
+            AjustesPanel ap = new AjustesPanel(0, 0, 1300, 1200, null);
+
+            vp.ventana.remove(vp.centerPanel);
+            vp.ventana.remove(vp.tp);
+
+            vp.ventana.repaint();
+
+            vp.centerPanel = ap;
             vp.ventana.add(vp.centerPanel);
             vp.ventana.repaint();
 

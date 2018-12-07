@@ -2,8 +2,11 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import modelo.Producto;
 import org.codehaus.jettison.json.JSONException;
@@ -43,36 +46,50 @@ public class ButtonWinProdListener implements ActionListener {
                 JOptionPane.showMessageDialog(addProd, "Producto agegado correctamente");
             } catch (NumberFormatException nfe) {
                 JOptionPane.showMessageDialog(addProd, "Los precios y la existencia deben ser datos numericos");
-            }catch (NullPointerException | IndexOutOfBoundsException e) {
+            } catch (NullPointerException | IndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(addProd, "Debes llenar todos los campos");
-            }catch (ServiceException | JSONException ex) {
+            } catch (ServiceException | JSONException ex) {
                 Logger.getLogger(ButtonsProductosListener.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(addProd, "Ha ocurrido un error, intenta nuevamente");
             }
 
-    }
-
-    else if (ae.getSource () 
-        == addProd.prodbtn2) {
+        } else if (ae.getSource()
+                == addProd.prodbtn2) {
             try {
-            prod.setNombre(addProd.nombretxt.getText());
-            prod.setPrecioCompra(Double.parseDouble(addProd.pcompratxt.getText()));
-            prod.setPrecioVenta(Double.parseDouble(addProd.pventatxt.getText()));
-            prod.setExistencia(Double.parseDouble(addProd.existxt.getText()));
-            prod.setDescripcion(addProd.desctxt.getText());
+                prod.setNombre(addProd.nombretxt.getText());
+                prod.setPrecioCompra(Double.parseDouble(addProd.pcompratxt.getText()));
+                prod.setPrecioVenta(Double.parseDouble(addProd.pventatxt.getText()));
+                prod.setExistencia(Double.parseDouble(addProd.existxt.getText()));
+                prod.setDescripcion(addProd.desctxt.getText());
 
-            ProductosCliente client = new ProductosCliente("productos");
-            client.putProductos(prod, addProd.idtxt.getText());
-            JOptionPane.showMessageDialog(addProd, "Producto modificado correctamente");
-        } catch (NumberFormatException nfe) {
-            JOptionPane.showMessageDialog(addProd, "Los precios y la existencia deben ser datos numericos");
-        } catch (NullPointerException | IndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(addProd, "Debes llenar todos los campos");
-        } catch (ServiceException | JSONException ex) {
-            Logger.getLogger(ButtonsProductosListener.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(addProd, "Ha ocurrido un error, intenta nuevamente");
+                ProductosCliente client = new ProductosCliente("productos");
+                client.putProductos(prod, addProd.idtxt.getText());
+                JOptionPane.showMessageDialog(addProd, "Producto modificado correctamente");
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(addProd, "Los precios y la existencia deben ser datos numericos");
+            } catch (NullPointerException | IndexOutOfBoundsException e) {
+                JOptionPane.showMessageDialog(addProd, "Debes llenar todos los campos");
+            } catch (ServiceException | JSONException ex) {
+                Logger.getLogger(ButtonsProductosListener.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(addProd, "Ha ocurrido un error, intenta nuevamente");
+            }
+        } else if (ae.getSource() == addProd.imgbtn) {
+            JFileChooser jfc = new JFileChooser();
+            int estado = jfc.showOpenDialog(addProd);
+            File archivoelegido = jfc.getSelectedFile();
+            ModifiProdPanel.URL = archivoelegido.getPath();
+            if (archivoelegido.exists()) {
+                System.out.println("bien");
+            } else {
+                System.out.println("no bien");
+            }
+            if (estado == JFileChooser.APPROVE_OPTION);
+            {
+                
+                addProd.setImageSelected();
+               
+            }
         }
     }
-}
 
 }

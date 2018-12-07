@@ -30,12 +30,12 @@ public class Login {
     private String URL;
     private JLabel lbImgUser, lbUser, lbPass;
     private Icon user;
-    private JTextField userTxt;
-    private JPasswordField passTxt;
+    public JTextField userTxt;
+    public JPasswordField passTxt;
     public CustomButton aceptar;
     private Font font;
-    private ButtonGroup btnGroup;
-    private JRadioButton adminOp, vendeOp;
+    public ButtonGroup btnGroup;
+    public JRadioButton adminOp, vendeOp;
     private LoginListener loginListener;
 
     public Login(VistaPrincipal vp) {
@@ -64,6 +64,7 @@ public class Login {
         aceptar = new CustomButton("Aceptar");
         //RadioButtons
         adminOp = new JRadioButton("Administrador", true);
+        adminOp.setSelected(true);
         vendeOp = new JRadioButton("Vendedor", false);
         btnGroup = new ButtonGroup();
         //Listeners

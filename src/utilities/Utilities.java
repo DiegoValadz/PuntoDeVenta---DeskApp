@@ -6,17 +6,19 @@
 package utilities;
 
 import controlador.ButtonsNavListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import javax.ws.rs.core.Response;
 import modelo.Producto;
 import modelo.Usuario;
 import org.codehaus.jettison.json.JSONException;
 import service.ProductosCliente;
 import service.ServiceException;
-import service.UsuariosClient;
+import service.UsuariosCliente;
 import vista.paneles.ProductosPanel;
 import vista.paneles.UsuariosPanel;
 
@@ -24,32 +26,21 @@ import vista.paneles.UsuariosPanel;
  *
  * @author diego
  */
-public class Utilities extends Thread {
+public class Utilities {
 
     public static ArrayList<Producto> productos;
     public static ArrayList<Usuario> usuarios;
+    public static ArrayList<Usuario> vendedores;
     public static final String ADMIN = "Administrador";
     public static final String VEND = "Vendedor";
     public static final String CLIENT = "Cliente";
     public static String ID;
+    public static Usuario usuarioActual;
+    public static File currentFileImage;
     public static JFrame frameGlobal;
+    public static Response response;
 
-
-    @Override
-    public void run() {
-        ProductosCliente client = new ProductosCliente("productos");
-        UsuariosClient client2 = new UsuariosClient("usuarios");
-        try {
-            Utilities.productos = client.getProductos();
-            Utilities.usuarios = client2.getUsuarios();
-        } catch (ServiceException ex) {
-            Logger.getLogger(ButtonsNavListener.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
-            Logger.getLogger(ButtonsNavListener.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
+   
     public static DefaultTableModel setUpTableData(ProductosPanel p) {
         DefaultTableModel tableModel = (DefaultTableModel) p.tabla.getModel();
 

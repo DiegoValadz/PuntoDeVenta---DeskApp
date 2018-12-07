@@ -15,7 +15,7 @@ import modelo.Usuario;
 import org.codehaus.jettison.json.JSONException;
 import service.ProductosCliente;
 import service.ServiceException;
-import service.UsuariosClient;
+import service.UsuariosCliente;
 import vista.paneles.ModifiUserPanel;
 
 /**
@@ -47,9 +47,9 @@ public class ButtonWinUserListener implements ActionListener {
                 user.setCp(mup.cptxt.getText());
                 user.setTelefono(mup.teltxt.getText());
 
-                UsuariosClient client = new UsuariosClient("usuarios");
+                UsuariosCliente client = new UsuariosCliente("usuarios");
                 client.postUsuarios(user);
-                JOptionPane.showMessageDialog(mup, "Producto agegado correctamente");
+                JOptionPane.showMessageDialog(mup, "Uusario agegado correctamente");
 
             } catch (NullPointerException | IndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(mup, "Debes llenar todos los campos");
@@ -76,9 +76,9 @@ public class ButtonWinUserListener implements ActionListener {
                 user.setEmail(mup.emailtxt.getText());
 
 
-                UsuariosClient client = new UsuariosClient("usuarios");
-                client.putProductos(user, mup.idtxt.getText());
-                JOptionPane.showMessageDialog(mup, "Producto modificado correctamente");
+                UsuariosCliente client = new UsuariosCliente("usuarios");
+                client.putUsuarios(user, mup.idtxt.getText());
+                JOptionPane.showMessageDialog(mup, "Usuario modificado correctamente");
 
             } catch (NullPointerException | IndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(mup, "Debes llenar todos los campos");

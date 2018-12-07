@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 import org.codehaus.jettison.json.JSONException;
 import service.ProductosCliente;
 import service.ServiceException;
-import service.UsuariosClient;
+import service.UsuariosCliente;
 import utilities.Utilities;
-import vista.ModificarProductosDialog;
+import vista.ModificarCustomDialog;
 import vista.paneles.ModifiProdPanel;
 import vista.paneles.ModifiUserPanel;
 import vista.paneles.ProductosPanel;
@@ -28,7 +28,7 @@ import vista.paneles.UsuariosPanel;
 public class ButtonsUsuariosListener implements ActionListener {
 
     private UsuariosPanel up;
-    private ModificarProductosDialog dialog;
+    private ModificarCustomDialog dialog;
     private ModifiUserPanel mup;
 
     public ButtonsUsuariosListener(UsuariosPanel up) {
@@ -40,10 +40,10 @@ public class ButtonsUsuariosListener implements ActionListener {
         if (ae.getSource() == up.btnAgregar) {
             mup.s = ModifiProdPanel.ADD;
             mup = new ModifiUserPanel("Introduzca los datos del usuario");
-            dialog = new ModificarProductosDialog(mup);
+            dialog = new ModificarCustomDialog(mup);
 
         } else if (ae.getSource() == up.btnActua) {
-            UsuariosClient pc = new UsuariosClient("usuarios");
+            UsuariosCliente pc = new UsuariosCliente("usuarios");
             try {
                 Utilities.usuarios = pc.getUsuarios();
             } catch (ServiceException ex) {
@@ -79,7 +79,7 @@ public class ButtonsUsuariosListener implements ActionListener {
                     mup.emailtxt.setText(up.tabla.getValueAt(filaseleccionada, 9).toString());
 
                     mup.idtxt.setEditable(false);
-                    dialog = new ModificarProductosDialog(mup);
+                    dialog = new ModificarCustomDialog(mup);
 
                 }
           //  } catch (Exception e) {
@@ -98,8 +98,8 @@ public class ButtonsUsuariosListener implements ActionListener {
                     if (s == JOptionPane.YES_OPTION) {
                         String id = up.tabla.getValueAt(filaseleccionada, 0).toString();
                         System.out.println("El id es" + id);
-                        UsuariosClient cliente = new UsuariosClient("usuarios");
-                        cliente.deleteProductos(id);
+                        UsuariosCliente cliente = new UsuariosCliente("usuarios");
+                        cliente.deleteUsuarios(id);
                     }
 
                 }

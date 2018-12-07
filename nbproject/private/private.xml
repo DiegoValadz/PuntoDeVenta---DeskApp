@@ -4,30 +4,40 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/buttons/CustomButton.java</file>
-            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/modelo/ObjectId.java</file>
-            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/Test.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/paneles/GenerarVentasPanel.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/modelo/Producto.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/LoginListener.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/ButtonsProductosListener.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/VistaPrincipal.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/service/ProductosCliente.java</file>
-            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/utilities/MyLists.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/CustomTitleBar.java</file>
-            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/service/UsuariosClient.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/GVentasComboListener.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/paneles/ModifiProdPanel.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/service/ApplicationEndPoint.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/modelo/Usuario.java</file>
-            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/ModificarProductosFrame.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/service/UsuariosCliente.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/ButtonWinUserListener.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/service/UploadsCliente.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/modelo/Venta.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/paneles/ProductosPanel.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/paneles/CustomTabbedPanel.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/modelo/DataProductos.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/ButtonsUsuariosListener.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/service/VentasCliente.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/CloseListener.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/service/AbstractClient.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/paneles/ModifiUserPanel.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/modelo/DataVentas.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/ModificarCustomDialog.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/paneles/DiarioDeVentasPanel.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/utilities/Utilities.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/paneles/CustomPanel.java</file>
-            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/ButtonWinListener.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/service/ServiceException.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/Login.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/modelo/DataUsuarios.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/vista/paneles/UsuariosPanel.java</file>
             <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/ButtonsNavListener.java</file>
+            <file>file:/C:/Users/diego/Documents/NetBeansProjects/PuntoDeVenta/src/controlador/ButtonGVentaListener.java</file>
         </group>
     </open-files>
 </project-private>

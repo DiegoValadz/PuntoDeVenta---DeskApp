@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import modelo.Venta;
 import utilities.Utilities;
 import vista.buttons.CustomButton;
 import vista.VistaPrincipal;
@@ -40,13 +41,13 @@ public class ProductosPanel extends CustomPanel {
     public JTable tabla;
     public DefaultTableModel modelo;
     private JScrollPane scrollPane;
-    private JScrollBar scrollBar;
     private String URL;
     private ButtonsProductosListener bpl;
 
     public ProductosPanel(int x, int y, int widthP, int heigthP, LayoutManager lm) {
         super(x, y, widthP, heigthP, lm);
         setBounds(300, 0, 1500, 1200);
+       
         //Icons
         URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\update.png";
         updateIcon = new ImageIcon(URL);
@@ -102,6 +103,8 @@ public class ProductosPanel extends CustomPanel {
 
         TableColumnModel tm = tabla.getColumnModel();
         tm.getColumn(5).setPreferredWidth(300);
+        tm.getColumn(1).setPreferredWidth(270);
+
         Utilities.setUpTableData(this);
         tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 

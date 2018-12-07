@@ -11,13 +11,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
+import utilities.GetProductosThread;
+import utilities.GetUsuariosThread;
+import utilities.GetVendedoresThread;
+import utilities.MyValidator;
 import utilities.Utilities;
 
 /**
  *
  * @author diego
  */
-public class VistaPrincipal {
+public class VistaPrincipal implements MyValidator{
 
     public JFrame ventana;
     private CustomTitleBar titleBar;
@@ -34,8 +38,7 @@ public class VistaPrincipal {
     
 
     public VistaPrincipal(String nombre) {
-        Utilities m = new Utilities();
-        m.start();
+       
         //Login 
         Login login = new Login(this);
         //Frame
@@ -50,8 +53,8 @@ public class VistaPrincipal {
         titleBar = new CustomTitleBar();
 
         //Imagenes estaticas 
-        URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\banner.jpg";
-        //  imgBanner = new ImageIcon(URL);
+        URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\bannerdef.jpg";
+        imgBanner = new ImageIcon(URL);
         URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\prod_img.png";
         imgProductos = new ImageIcon(URL);
         URL = "C:\\Users\\diego\\Documents\\NetBeansProjects\\PuntoDeVenta\\src\\sources\\ventas_img.png";
@@ -87,7 +90,6 @@ public class VistaPrincipal {
         //Listener
         leftListener = new ButtonsNavListener(this);
         closeListener = new CloseListener(this);
-
         addComponents();
         launchFrame();
     }
@@ -144,7 +146,23 @@ public class VistaPrincipal {
     }
 
     public static void main(String[] args) {
+        GetUsuariosThread usersSvc = new GetUsuariosThread();
+        GetProductosThread prodSvc = new GetProductosThread();
+        GetVendedoresThread vendedoresSvc = new GetVendedoresThread();
+        
+        usersSvc.start();
+        prodSvc.start();
+        vendedoresSvc.start();
+
+                
         new VistaPrincipal("App");
+    }
+
+    public void validarFunciones(String tipo) {
+        System.out.println("Viene: "+tipo+"Tengo: "+Utilities.VEND);
+        if(Utilities.usuarioActual.getTipo().equals(Utilities.VEND)){
+            btn3.setEnabled(false);
+        }
     }
 
 }

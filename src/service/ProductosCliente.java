@@ -21,7 +21,7 @@ import utilities.Utilities;
  * @author diego
  */
 public class ProductosCliente extends AbstractClient {
-
+public Response responseGlobal;
     private static final Logger log = Logger.getLogger(ProductosCliente.class.getName());
 
     public ProductosCliente(String contextPath) {
@@ -33,6 +33,7 @@ public class ProductosCliente extends AbstractClient {
         log.info("Obteniendo Productos");
         ResteasyWebTarget client = createClient("");
         Response response = client.request(MediaType.APPLICATION_JSON).get();
+        responseGlobal = response;
 
         log.info("Status " + response.getStatus());
         Integer status = response.getStatus();
@@ -52,6 +53,7 @@ public class ProductosCliente extends AbstractClient {
         DataProductos aux;
         ResteasyWebTarget client = createClient("");
         Response response = client.request(MediaType.APPLICATION_JSON).post(Entity.json(p));
+        responseGlobal = response;
 
         log.info("Status " + response.getStatus());
         Integer status = response.getStatus();
@@ -70,6 +72,7 @@ public class ProductosCliente extends AbstractClient {
         log.info("Actualizando Productos");
         ResteasyWebTarget client = createClient("/"+id);
         Response response = client.request(MediaType.APPLICATION_JSON).put(Entity.json(p));
+        responseGlobal = response;
 
         log.info("Status " + response.getStatus());
         Integer status = response.getStatus();
@@ -89,6 +92,7 @@ public class ProductosCliente extends AbstractClient {
         log.info("Eliminando Producto");
         ResteasyWebTarget client = createClient("/"+id);
         Response response = client.request(MediaType.APPLICATION_JSON).delete();
+        responseGlobal = response;
 
         log.info("Status " + response.getStatus());
         Integer status = response.getStatus();
